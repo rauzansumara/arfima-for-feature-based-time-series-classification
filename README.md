@@ -31,9 +31,9 @@ Please note that this script might only run on Windows systems.
 
 ## Results
 <p align="center">
-  <img src="figure/comparison.eps"/>
+  <img src="figure/comparison1.png"/>
 </p>
 
 <p align="center">
-  <img src="figure/comparison.png"/>
+  <img src="figure/comparison2.png"/>
 </p>
