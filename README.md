@@ -3,7 +3,7 @@
 **Autoregressive Fractionally Integrated Moving Average for Feature-Based Time Series Classification**
 
 ## Requirements
-All python packages needed are listed in [requirements.txt](requirements.txt) file  and can be installed simply using the pip command. How to install dependencies? Assuming that you have `python3` and `pip3` installed, third-party packages can be installed with:
+We used python 3.8.5. All python packages needed are listed in [requirements.txt](requirements.txt) file  and can be installed simply using the pip command. How to install dependencies? assuming that you have `python3` and `pip3` installed, third-party packages can be installed with:
 
 ```
 pip3 install -r requirements.txt --upgrade --user
@@ -11,11 +11,10 @@ pip3 install -r requirements.txt --upgrade --user
 
 * [pandas](https://pandas.pydata.org/)
 * [numpy](https://numpy.org/)
-* [numba](http://numba.pydata.org/) 
 * [sklearn](https://scikit-learn.org/stable/)
-* [catch22](https://github.com/chlubba/catch22) (optional)
-* [sktime](https://github.com/alan-turing-institute/sktime) (required for MTSC)
-* [torch](https://pytorch.org/) (required for logistic regression)
+* [statsmodels](https://www.statsmodels.org/stable/index.html)
+* [sktime](https://github.com/alan-turing-institute/sktime)
+* [pmdarima](https://pypi.org/project/pmdarima/)
 
 ## How to run on particular dataset?
 
