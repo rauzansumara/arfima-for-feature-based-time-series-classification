@@ -12,9 +12,9 @@ pip3 install -r requirements.txt --upgrade --user
 * [pandas](https://pandas.pydata.org/)
 * [numpy](https://numpy.org/)
 * [sklearn](https://scikit-learn.org/stable/)
-* [statsmodels](https://www.statsmodels.org/stable/index.html)
 * [sktime](https://github.com/alan-turing-institute/sktime)
-* [pmdarima](https://pypi.org/project/pmdarima/)
+* [rpy2](https://rpy2.github.io/)
+* [tsfresh](https://tsfresh.readthedocs.io/en/latest/)
 
 ## How to run on particular dataset?
 
