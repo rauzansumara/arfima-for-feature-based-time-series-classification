@@ -263,7 +263,7 @@ def load_from_arff_to_dataframe(
     is_multi_variate = False
     is_first_case = True
 
-    with open(full_file_path_and_name, "r") as f:
+    with open(full_file_path_and_name, "r", encoding="utf-8") as f:
         for line in f:
 
             if line.strip():
@@ -339,7 +339,7 @@ def load_from_arff_to_dataframe(
 
 
 # Feature Extraction ARFIMA Models
-def arfima_coefs(x, max_pq=5):
+def arfima_coefs(x, max_pq=15):
     x = np.asarray(x).ravel()
     model = forecast.arfima(vectors.FloatVector(x), **{'estim':'ls', 'max.p':max_pq, 'max.q':max_pq})
 
@@ -354,7 +354,7 @@ def arfima_coefs(x, max_pq=5):
 # Additional Feature Extraction
 def other_features(x):
     x = np.asarray(x).ravel()
-    n = max(20, min(int(len(x)*0.50), 100))
+    n = max(20, min(int(len(x)*0.50), 175))
     add1 = np.asarray([fc.maximum(x), fc.minimum(x), fc.mean(x), fc.median(x), fc.mean_abs_change(x),
                        fc.mean_change(x), fc.mean_second_derivative_central(x), fc.percentage_of_reoccurring_datapoints_to_all_datapoints(x),
                        fc.percentage_of_reoccurring_values_to_all_values(x), fc.ratio_value_number_to_time_series_length(x),

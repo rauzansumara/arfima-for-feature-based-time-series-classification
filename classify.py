@@ -9,6 +9,7 @@ from os import path
 from sktime.series_as_features.compose import FeatureUnion
 from sktime.transformations.panel.reduce import Tabularizer
 from sktime.datatypes._panel._convert import from_nested_to_2d_array
+from sktime.transformations.panel.tsfresh import TSFreshFeatureExtractor
 
 from sklearn.svm import SVC
 from sklearn.pipeline import make_pipeline
@@ -16,7 +17,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.ensemble import AdaBoostClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.preprocessing import FunctionTransformer
+from sklearn.preprocessing import FunctionTransformer, MinMaxScaler
 
 
 def tabularisation_features(Xtrain: pd.DataFrame, Ytrain: pd.DataFrame, Xtest: pd.DataFrame, Ytest: pd.DataFrame):
@@ -27,11 +28,11 @@ def tabularisation_features(Xtrain: pd.DataFrame, Ytrain: pd.DataFrame, Xtest: p
 
     # define classifiers
     classifiers_list = [
-        [make_pipeline(KNeighborsClassifier(n_neighbors=1)), 'k-NN (k=1)'],
-        [make_pipeline(KNeighborsClassifier(n_neighbors=5)), 'k-NN (k=5)'],
-        [make_pipeline(SVC(gamma='scale', kernel='rbf')), 'SVM'],
-        [make_pipeline(RandomForestClassifier(n_estimators=500)), 'RF'],
-        [make_pipeline(AdaBoostClassifier(n_estimators=500)), 'AdaBoost'],
+        [make_pipeline(MinMaxScaler(), KNeighborsClassifier(n_neighbors=1)), 'k-NN (k=1)'],
+        [make_pipeline(MinMaxScaler(), KNeighborsClassifier(n_neighbors=5)), 'k-NN (k=5)'],
+        [make_pipeline(MinMaxScaler(), SVC(gamma='scale', kernel='rbf')), 'SVM'],
+        [make_pipeline(MinMaxScaler(), RandomForestClassifier(n_estimators=500)), 'RF'],
+        [make_pipeline(MinMaxScaler(), AdaBoostClassifier(n_estimators=500)), 'AdaBoost'],
     ]
 
     # looping for prediction
@@ -49,17 +50,18 @@ def arfima_features(Xtrain: pd.DataFrame, Ytrain: pd.DataFrame, Xtest: pd.DataFr
                                     ('arfima', utils.RowTransformer(FunctionTransformer(func=utils.arfima_coefs, validate=False))),
                                     ('others', utils.RowTransformer(FunctionTransformer(func=utils.other_features, validate=False)))
                                 ])
+    
     # fit feature extraction
     comb_X_train = combined_features.fit_transform(Xtrain)
     comb_X_test = combined_features.fit_transform(Xtest)
 
     # define classifiers
     classifiers_list = [
-        [make_pipeline(Tabularizer(), KNeighborsClassifier(n_neighbors=1)), 'k-NN (k=1)'],
-        [make_pipeline(Tabularizer(), KNeighborsClassifier(n_neighbors=5)), 'k-NN (k=5)'],
-        [make_pipeline(Tabularizer(), SVC(gamma='scale', kernel='rbf')), 'SVM'],
-        [make_pipeline(Tabularizer(), RandomForestClassifier(n_estimators=500)), 'RF'],
-        [make_pipeline(Tabularizer(), AdaBoostClassifier(n_estimators=500)), 'AdaBoost'],
+        [make_pipeline(Tabularizer(), MinMaxScaler(), KNeighborsClassifier(n_neighbors=1)), 'k-NN (k=1)'],
+        [make_pipeline(Tabularizer(), MinMaxScaler(), KNeighborsClassifier(n_neighbors=5)), 'k-NN (k=5)'],
+        [make_pipeline(Tabularizer(), MinMaxScaler(), SVC(gamma='scale', kernel='rbf')), 'SVM'],
+        [make_pipeline(Tabularizer(), MinMaxScaler(), RandomForestClassifier(n_estimators=500)), 'RF'],
+        [make_pipeline(Tabularizer(), MinMaxScaler(), AdaBoostClassifier(n_estimators=500)), 'AdaBoost'],
     ]
 
     # looping for prediction
