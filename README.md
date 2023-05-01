@@ -9,6 +9,14 @@ All python packages needed are listed in [requirements.txt](requirements.txt) fi
 pip3 install -r requirements.txt --upgrade --user
 ```
 
+* [pandas](https://pandas.pydata.org/)
+* [numpy](https://numpy.org/)
+* [numba](http://numba.pydata.org/) 
+* [sklearn](https://scikit-learn.org/stable/)
+* [catch22](https://github.com/chlubba/catch22) (optional)
+* [sktime](https://github.com/alan-turing-institute/sktime) (required for MTSC)
+* [torch](https://pytorch.org/) (required for logistic regression)
+
 ## How to run on particular dataset?
 
 The program is prepared to easily use datasets in a `*.arff` format obtained from [timeseriesclassification.com](http://timeseriesclassification.com), steps: 1) Having two `*.arff` files named `YourDataSet_TRAIN.arff` and `YourDataSet_TEST.arff`, place them in `datasets/` directory, and 2) run `python classify.py YourDataSet` to classify data based on test set.
