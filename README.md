@@ -42,5 +42,5 @@ Please note that this script might only run on Windows systems.
 </p>
 
 <p align="center">
-  <img src="figure/comparison2.png"/>
+  <img src="figure/comparison2.png" style="width:800px; height:800px"/>
 </p>
