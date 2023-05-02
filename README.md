@@ -18,7 +18,7 @@ pip3 install -r requirements.txt --upgrade --user
 
 ## How to run on particular dataset?
 
-The program is prepared to easily use datasets in a `*.arff` format obtained from [timeseriesclassification.com](http://timeseriesclassification.com), steps: 1) Having two `*.arff` files named `YourDataSet_TRAIN.arff` and `YourDataSet_TEST.arff`, place them in `datasets/` directory, and 2) run `python classify.py YourDataSet` to classify data based on test set.
+The program is prepared to easily use datasets in a `*.arff` format obtained from [timeseriesclassification.com](http://timeseriesclassification.com), steps: 1) having two `*.arff` files named `YourDataSet_TRAIN.arff` and `YourDataSet_TEST.arff`, place them in `datasets/` directory, and 2) run `python classify.py YourDataSet` to classify data based on test set.
 
 Note: `YourDataSet` is a name of particular dataset from the website.
 
@@ -30,7 +30,7 @@ Please note that this script might only run on Windows systems.
 
 ## Results
 <p align="center">
-  <img src="figure/comparison1.png"/>
+  <img src="figure/comparison1.png" style="width:500px; height:500px"/>
 </p>
 
 <p align="center">
