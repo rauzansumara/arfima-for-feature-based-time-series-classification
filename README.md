@@ -32,7 +32,7 @@ Note: `YourDataSet` is a name of particular dataset from the website.
 
 ## How to run all data sets from directory folder?
 
-You can run `python run_all.py` to test the classifier on every data set from `datasets/` folder.
+You can run `python run_all.py` to test the classifier on every data set from `datasets/` folder (It is not recommended at the moment).
 
 Please note that this script might only run on Windows systems.
 
