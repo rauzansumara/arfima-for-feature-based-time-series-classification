@@ -74,7 +74,6 @@ def arfima_features(Xtrain: pd.DataFrame, Ytrain: pd.DataFrame, Xtest: pd.DataFr
 
 def run(data_name: str):
 
-    # read datasets
     X_train, y_train = utils.load_from_arff_to_dataframe(path.join("datasets", data_name, f"{data_name}_TRAIN.arff"))
     X_test, y_test = utils.load_from_arff_to_dataframe(path.join("datasets", data_name, f"{data_name}_TEST.arff"))
 

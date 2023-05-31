@@ -1,18 +1,16 @@
-# Import Package R to Python
-from rpy2.robjects import packages, vectors
-forecast = packages.importr('forecast')
-
-# Import Package Python
+# Import Package
 import numpy as np
 import itertools
 import pandas as pd
+
+from rpy2.robjects import packages, vectors
+forecast = packages.importr('forecast')
 
 from sktime.datatypes._panel._convert import from_nested_to_2d_array, _concat_nested_arrays
 from sktime.utils.validation.panel import check_X
 import tsfresh.feature_extraction.feature_calculators as fc
 
 
-# class BaseSeriesAsFeaturesTransformer
 class BaseSeriesAsFeaturesTransformer():
     """
     Base class for transformers, for identification.
@@ -50,7 +48,6 @@ class BaseSeriesAsFeaturesTransformer():
         return self.fit(X, y, **fit_params).transform(X)
 
 
-# class NotFittedError
 class NotFittedError(ValueError, AttributeError):
     """Exception class to raise if estimator is used before fitting.
     This class inherits from both ValueError and AttributeError to help with
@@ -62,7 +59,6 @@ class NotFittedError(ValueError, AttributeError):
     """
 
 
-# class BaseEstimator
 class BaseEstimator():
 
     # def __init__(self, *args, **kwargs):
@@ -94,7 +90,6 @@ class BaseEstimator():
                 f"been fitted yet; please call `fit` first.")
 
 
-# class BaseSeriesAsFeaturesTransformer
 class BaseSeriesAsFeaturesTransformer(BaseEstimator):
     """
     Base class for transformers, for identification.
@@ -132,19 +127,16 @@ class BaseSeriesAsFeaturesTransformer(BaseEstimator):
         return self.fit(X, y, **fit_params).transform(X)
 
 
-# class NonFittableSeriesAsFeaturesTransformer
 class _NonFittableSeriesAsFeaturesTransformer(BaseSeriesAsFeaturesTransformer):
     """Base class for transformers which do nothing in fit and if fittable,
     fit during transform, otherwise only transform data"""
     pass
 
 
-# class MetaEstimatorMixin
 class MetaEstimatorMixin:
     _required_parameters = []
 
 
-# class RowTransformer
 class RowTransformer(_NonFittableSeriesAsFeaturesTransformer,
                      MetaEstimatorMixin):
     """A convenience wrapper for row-wise transformers to apply
@@ -237,7 +229,6 @@ class RowTransformer(_NonFittableSeriesAsFeaturesTransformer,
         return Xt
 
 
-# load_from_arff_to_dataframe
 def load_from_arff_to_dataframe(
     full_file_path_and_name,
     has_class_labels=True,
@@ -338,7 +329,6 @@ def load_from_arff_to_dataframe(
     return x_data
 
 
-# Feature Extraction ARFIMA Models
 def arfima_coefs(x, max_pq=15):
     x = np.asarray(x).ravel()
     model = forecast.arfima(vectors.FloatVector(x), **{'estim':'ls', 'max.p':max_pq, 'max.q':max_pq})
@@ -351,7 +341,6 @@ def arfima_coefs(x, max_pq=15):
     return np.concatenate((np.asarray(model[3]), feature.flatten())).ravel()
 
 
-# Additional Feature Extraction
 def other_features(x):
     x = np.asarray(x).ravel()
     n = max(20, min(int(len(x)*0.50), 175))
